@@ -29,7 +29,7 @@ const LoginScreen = (): ReactElement => {
       .signInWithEmailAndPassword(user.email?.toLowerCase(), user.password)
       .then(user => {
         console.log('User signed in!', user);
-        await analytics().logEvent('TrainingApp', {
+        analytics().logEvent('TrainingApp', {
           item: 'User login',
           description: JSON.stringify(user),
         })
