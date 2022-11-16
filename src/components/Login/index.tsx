@@ -17,18 +17,21 @@ import styles from './index.styles';
 
 const Login = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{alignItems: 'center', justifyContent: 'center', paddingTop: 100, paddingHorizontal: 30}}>
       <TextInput
-        style={{fontSize: 42, color: 'steelblue'}}
+        style={{fontSize: 32}}
         placeholder="Enter Username"
       />
 
       <TextInput
-        style={{fontSize: 42, color: 'steelblue'}}
+        style={{fontSize: 32, marginTop: 20}}
         placeholder="Enter Password"
       />
       <TouchableOpacity>
-        <Text style={{fontSize: 42, color: 'steelblue'}}>Login</Text>
+        <Text style={{fontSize: 42, color: 'steelblue', marginTop: 50}}>
+          Login
+        </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
