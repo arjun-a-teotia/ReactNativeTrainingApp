@@ -5,7 +5,7 @@ import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { LoginScreen } from 'src/screens';
+import { LoginScreen, RegisterScreen, ProfileScreen, SplashScreen } from 'src/screens';
 import { RootStackParamList } from 'src/navigation';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -15,9 +15,24 @@ const App = (): ReactElement => (
         <StatusBar />
         <Stack.Navigator>
             <Stack.Screen
+                name="SplashScreen"
+                component={SplashScreen}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
                 name="LoginScreen"
                 component={LoginScreen}
                 options={{ title: 'Login' }}
+            />
+            <Stack.Screen
+                name="RegisterScreen"
+                component={RegisterScreen}
+                options={{ title: 'Register' }}
+            />
+            <Stack.Screen
+                name="ProfileScreen"
+                component={ProfileScreen}
+                options={{ title: 'My Profile' }}
             />
         </Stack.Navigator>
     </NavigationContainer>

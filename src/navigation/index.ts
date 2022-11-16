@@ -8,7 +8,7 @@ type UserDetailParams = {
 };
 
 type RootStackParamList = {
-    readonly AuthorityDetail: UserDetailParams;
+    readonly UserDetail: UserDetailParams;
 };
 
 type RootStackNavigation = NativeStackNavigationProp<RootStackParamList>;

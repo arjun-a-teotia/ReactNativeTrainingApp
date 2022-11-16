@@ -22,7 +22,7 @@ type LoginProps = {
   readonly navBtnTitle?: string
 };
 
-const Login = ({onAction = undefined, onNavigation, mainBtnTitle, navBtnTitle}: LoginProps): ReactElement => {
+const Profile = ({onAction = undefined, onNavigation, mainBtnTitle, navBtnTitle}: LoginProps): ReactElement => {
   const [email, setEmail] = React.useState<string>();
   const [password, setPassword] = React.useState<string>();
   return (
@@ -53,4 +53,4 @@ const Login = ({onAction = undefined, onNavigation, mainBtnTitle, navBtnTitle}: 
   );
 };
 
-export {Login};
+export {Profile};
