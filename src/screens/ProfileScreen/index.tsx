@@ -1,10 +1,9 @@
-import React, {ReactElement, useEffect, useState} from 'react';
+import React, {ReactElement} from 'react';
 
 import {useNavigation} from '@react-navigation/native';
 
 import {TouchableOpacity, SafeAreaView, Text, Platform} from 'react-native';
 
-import {User} from '../../models';
 import {RootStackNavigation} from '../../navigation';
 import auth from '@react-native-firebase/auth';
 import {StackActions} from '@react-navigation/native';
@@ -12,18 +11,16 @@ import analytics from '@react-native-firebase/analytics';
 import QRCode from 'react-native-qrcode-svg';
 
 const ProfileScreen = (): ReactElement => {
-  const [user, setUser] = useState<readonly User[]>();
-  const [errorMessage, setErrorMessage] = useState<string>();
-
   const navigation = useNavigation<RootStackNavigation>();
 
   const onLogout = async () => {
-    await analytics().logEvent('TrainingApp_Profile_logout_btn_click_' + Platform.OS);
+    await analytics().logEvent(
+      'TrainingApp_Profile_logout_btn_click_' + Platform.OS,
+    );
     auth()
       .signOut()
       .then(() => navigation.dispatch(StackActions.replace('LoginScreen')));
   };
-  let base64Logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAA..';
 
   return (
     <SafeAreaView

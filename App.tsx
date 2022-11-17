@@ -64,8 +64,6 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  
-
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -80,7 +78,7 @@ const App = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-            <Text> arjun</Text>
+          <Text> arjun</Text>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.

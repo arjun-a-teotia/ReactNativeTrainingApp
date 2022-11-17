@@ -1,14 +1,6 @@
 import React, {ReactElement} from 'react';
 
-import {
-  FlatList,
-  ListRenderItem,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {User} from 'src/models';
@@ -18,11 +10,16 @@ import styles from './index.styles';
 type LoginProps = {
   readonly onAction?: (user: User) => void;
   readonly onNavigation?: () => void;
-  readonly mainBtnTitle?: string
-  readonly navBtnTitle?: string
+  readonly mainBtnTitle?: string;
+  readonly navBtnTitle?: string;
 };
 
-const Profile = ({onAction = undefined, onNavigation, mainBtnTitle, navBtnTitle}: LoginProps): ReactElement => {
+const Profile = ({
+  onAction = undefined,
+  onNavigation,
+  mainBtnTitle,
+  navBtnTitle,
+}: LoginProps): ReactElement => {
   const [email, setEmail] = React.useState<string>();
   const [password, setPassword] = React.useState<string>();
   return (
@@ -44,9 +41,7 @@ const Profile = ({onAction = undefined, onNavigation, mainBtnTitle, navBtnTitle}
           <Text style={styles.btnText}>{mainBtnTitle}</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={styles.regTextContainer}
-        onPress={onNavigation}>
+      <TouchableOpacity style={styles.regTextContainer} onPress={onNavigation}>
         <Text style={styles.regText}>{navBtnTitle}</Text>
       </TouchableOpacity>
     </SafeAreaView>

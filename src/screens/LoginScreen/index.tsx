@@ -1,8 +1,8 @@
-import React, {ReactElement, useEffect, useState} from 'react';
+import React, {ReactElement} from 'react';
 
 import {useNavigation} from '@react-navigation/native';
 
-import {ActivityIndicator, Alert, Platform, Text} from 'react-native';
+import {Alert, Platform} from 'react-native';
 
 import {Login} from '../../components';
 import {User} from '../../models';
@@ -11,15 +11,8 @@ import auth from '@react-native-firebase/auth';
 import {StackActions} from '@react-navigation/native';
 import analytics from '@react-native-firebase/analytics';
 
-
 const LoginScreen = (): ReactElement => {
-  const [user, setUser] = useState<readonly User[]>();
-  const [errorMessage, setErrorMessage] = useState<string>();
-
   const navigation = useNavigation<RootStackNavigation>();
-
-  useEffect(() => {}, []);
-
   const onRegisterPress = () => {
     navigation.navigate('RegisterScreen', {});
   };
@@ -27,8 +20,7 @@ const LoginScreen = (): ReactElement => {
   const onLoginPress = (user: User) => {
     auth()
       .signInWithEmailAndPassword(user.email?.toLowerCase(), user.password)
-      .then(user => {
-        console.log('User signed in!', user);
+      .then(() => {
         analytics().logEvent('TrainingApp_Profile_login_by_' + Platform.OS);
 
         navigation.dispatch(StackActions.replace('ProfileScreen'));
@@ -42,14 +34,6 @@ const LoginScreen = (): ReactElement => {
         console.log(error);
       });
   };
-
-  if (errorMessage) {
-    return <Text>{errorMessage}</Text>;
-  }
-
-  if (user) {
-    return <ActivityIndicator testID="activity-indicator" />;
-  }
 
   return (
     <Login

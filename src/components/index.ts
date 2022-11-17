@@ -1,4 +1,4 @@
 /* istanbul ignore file */
-import { Login } from './Login';
+import {Login} from './Login';
 
-export { Login };
+export {Login};

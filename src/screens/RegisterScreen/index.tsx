@@ -1,21 +1,17 @@
-import React, {ReactElement, useEffect, useState} from 'react';
+import React, {ReactElement, useEffect} from 'react';
 
 import {useNavigation} from '@react-navigation/native';
 
-import {ActivityIndicator, Alert, Platform, Text} from 'react-native';
+import {Alert, Platform} from 'react-native';
 
 import {Login} from '../../components';
 import {User} from '../../models';
 import {RootStackNavigation} from '../../navigation';
 import auth from '@react-native-firebase/auth';
-import { CommonActions } from '@react-navigation/native';
+import {CommonActions} from '@react-navigation/native';
 import analytics from '@react-native-firebase/analytics';
 
-
 const RegisterScreen = (): ReactElement => {
-  const [user, setUser] = useState<readonly User[]>();
-  const [errorMessage, setErrorMessage] = useState<string>();
-
   const navigation = useNavigation<RootStackNavigation>();
 
   useEffect(() => {}, []);
@@ -28,10 +24,8 @@ const RegisterScreen = (): ReactElement => {
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
-            routes: [
-              { name: 'ProfileScreen' }
-            ],
-          })
+            routes: [{name: 'ProfileScreen'}],
+          }),
         );
       })
       .catch(error => {
@@ -51,14 +45,6 @@ const RegisterScreen = (): ReactElement => {
   const onLoginPress = () => {
     navigation.navigate('LoginScreen', null);
   };
-
-  if (errorMessage) {
-    return <Text>{errorMessage}</Text>;
-  }
-
-  if (user) {
-    return <ActivityIndicator testID="activity-indicator" />;
-  }
 
   return (
     <Login

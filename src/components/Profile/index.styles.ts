@@ -6,12 +6,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   loginContainer: {
-    alignItems: "center"
+    alignItems: 'center',
   },
   textInput: {
     fontSize: 32,
     marginTop: 20,
-    width: '80%'
+    width: '80%',
   },
   btnText: {
     fontSize: 32,
@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   regTextContainer: {
-    alignItems: "flex-end",
-    textAlign: "right"
+    alignItems: 'flex-end',
+    textAlign: 'right',
   },
   regText: {
     fontSize: 18,
