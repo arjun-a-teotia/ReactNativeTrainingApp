@@ -2,13 +2,14 @@ import React, {ReactElement, useEffect, useState} from 'react';
 
 import {useNavigation} from '@react-navigation/native';
 
-import {TouchableOpacity, SafeAreaView, Text} from 'react-native';
+import {TouchableOpacity, SafeAreaView, Text, Platform} from 'react-native';
 
 import {User} from '../../models';
 import {RootStackNavigation} from '../../navigation';
 import auth from '@react-native-firebase/auth';
-import { StackActions } from '@react-navigation/native';
+import {StackActions} from '@react-navigation/native';
 import analytics from '@react-native-firebase/analytics';
+import QRCode from 'react-native-qrcode-svg';
 
 const ProfileScreen = (): ReactElement => {
   const [user, setUser] = useState<readonly User[]>();
@@ -16,25 +17,20 @@ const ProfileScreen = (): ReactElement => {
 
   const navigation = useNavigation<RootStackNavigation>();
 
-  useEffect(() => {}, []);
-
-  const onLogout = async() => {
-    analytics().setAnalyticsCollectionEnabled(true);
-    const a = await analytics().logEvent(`Page_1`, {})
-    console.log("arjun", a);
-    return
+  const onLogout = async () => {
+    await analytics().logEvent('TrainingApp_Profile_logout_btn_click_' + Platform.OS);
     auth()
       .signOut()
-      .then(() => 
-      navigation.dispatch(
-        StackActions.replace('LoginScreen')
-      ));
+      .then(() => navigation.dispatch(StackActions.replace('LoginScreen')));
   };
+  let base64Logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAA..';
 
   return (
     <SafeAreaView
       style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
       <Text>Welcome {auth().currentUser?.displayName || 'User'}</Text>
+
+      <QRCode value="Thanks for logging in!" />
 
       <TouchableOpacity
         style={{

@@ -2,7 +2,7 @@ import React, {ReactElement, useEffect, useState} from 'react';
 
 import {useNavigation} from '@react-navigation/native';
 
-import {ActivityIndicator, Alert, Text} from 'react-native';
+import {ActivityIndicator, Alert, Platform, Text} from 'react-native';
 
 import {Login} from '../../components';
 import {User} from '../../models';
@@ -29,10 +29,7 @@ const LoginScreen = (): ReactElement => {
       .signInWithEmailAndPassword(user.email?.toLowerCase(), user.password)
       .then(user => {
         console.log('User signed in!', user);
-        analytics().logEvent('TrainingApp', {
-          item: 'User login',
-          description: JSON.stringify(user),
-        })
+        analytics().logEvent('TrainingApp_Profile_login_by_' + Platform.OS);
 
         navigation.dispatch(StackActions.replace('ProfileScreen'));
       })

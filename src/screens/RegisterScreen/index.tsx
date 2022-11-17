@@ -2,7 +2,7 @@ import React, {ReactElement, useEffect, useState} from 'react';
 
 import {useNavigation} from '@react-navigation/native';
 
-import {ActivityIndicator, Alert, Text} from 'react-native';
+import {ActivityIndicator, Alert, Platform, Text} from 'react-native';
 
 import {Login} from '../../components';
 import {User} from '../../models';
@@ -23,13 +23,8 @@ const RegisterScreen = (): ReactElement => {
   const onRegisterPress = (user: User) => {
     auth()
       .createUserWithEmailAndPassword(user.email.toLowerCase(), user.password)
-      .then(user => {
-        console.log('User account created & signed in!', user.uid);
-        analytics().logEvent('TrainingApp', {
-          id: 3745092,
-          item: 'New user created',
-          description: JSON.stringify(user),
-        })
+      .then(() => {
+        analytics().logEvent('TrainingApp_Profile_register_by_' + Platform.OS);
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
