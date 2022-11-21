@@ -2,11 +2,11 @@ import React, {ReactElement, useEffect} from 'react';
 
 import {useNavigation} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
-import {ActivityIndicator, Platform, SafeAreaView, Text} from 'react-native';
+import {Platform} from 'react-native';
 import {RootStackNavigation} from '../../navigation';
 import {StackActions} from '@react-navigation/native';
 import analytics from '@react-native-firebase/analytics';
-import styles from './index.styles';
+import {Profile} from '../../components';
 
 const SplashScreen = (): ReactElement => {
   const navigation = useNavigation<RootStackNavigation>();
@@ -22,12 +22,7 @@ const SplashScreen = (): ReactElement => {
     }, 1000);
   }, [navigation]);
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text>Welcome to IW Training App</Text>
-      <ActivityIndicator size={'large'} />
-    </SafeAreaView>
-  );
+  return <Profile heading={'Welcome to IW Training App'} />;
 };
 
 export {SplashScreen};
