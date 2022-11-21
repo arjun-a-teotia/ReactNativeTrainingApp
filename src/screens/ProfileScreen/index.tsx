@@ -9,6 +9,7 @@ import auth from '@react-native-firebase/auth';
 import {StackActions} from '@react-navigation/native';
 import analytics from '@react-native-firebase/analytics';
 import QRCode from 'react-native-qrcode-svg';
+import styles from './index.styles';
 
 const ProfileScreen = (): ReactElement => {
   const navigation = useNavigation<RootStackNavigation>();
@@ -23,25 +24,13 @@ const ProfileScreen = (): ReactElement => {
   };
 
   return (
-    <SafeAreaView
-      style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
+    <SafeAreaView style={styles.container}>
       <Text>Welcome {auth().currentUser?.displayName || 'User'}</Text>
 
       <QRCode value="Thanks for logging in!" />
 
-      <TouchableOpacity
-        style={{
-          alignItems: 'flex-end',
-        }}
-        onPress={onLogout}>
-        <Text
-          style={{
-            fontSize: 18,
-            marginTop: 150,
-            color: 'steelblue',
-          }}>
-          Logout
-        </Text>
+      <TouchableOpacity style={styles.logoutBtnContainer} onPress={onLogout}>
+        <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
