@@ -10,8 +10,8 @@ import {
   RegisterScreen,
   ProfileScreen,
   SplashScreen,
-} from 'src/screens';
-import {RootStackParamList} from 'src/navigation';
+} from '../../screens';
+import {RootStackParamList} from '../../navigation';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

@@ -14,7 +14,7 @@ import analytics from '@react-native-firebase/analytics';
 const LoginScreen = (): ReactElement => {
   const navigation = useNavigation<RootStackNavigation>();
   const onRegisterPress = () => {
-    navigation.navigate('RegisterScreen', {});
+    navigation.navigate('RegisterScreen');
   };
 
   const onLoginPress = (user: User) => {

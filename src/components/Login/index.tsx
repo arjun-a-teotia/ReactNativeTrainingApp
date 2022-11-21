@@ -3,7 +3,7 @@ import React, {ReactElement} from 'react';
 import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import {User} from 'src/models';
+import {User} from '../../models';
 
 import styles from './index.styles';
 
@@ -20,8 +20,8 @@ const Login = ({
   mainBtnTitle,
   navBtnTitle,
 }: LoginProps): ReactElement => {
-  const [email, setEmail] = React.useState<string>();
-  const [password, setPassword] = React.useState<string>();
+  const [email, setEmail] = React.useState<string>('');
+  const [password, setPassword] = React.useState<string>('');
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.loginContainer}>

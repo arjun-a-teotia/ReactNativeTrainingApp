@@ -43,7 +43,7 @@ const RegisterScreen = (): ReactElement => {
   };
 
   const onLoginPress = () => {
-    navigation.navigate('LoginScreen', null);
+    navigation.navigate('LoginScreen');
   };
 
   return (

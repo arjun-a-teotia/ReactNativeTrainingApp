@@ -1,6 +1,6 @@
 type User = {
-  readonly id: number;
-  readonly name: string;
+  readonly id?: number;
+  readonly nam?: string;
   readonly email: string;
   readonly password: string;
 };
