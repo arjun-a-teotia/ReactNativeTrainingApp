@@ -12,15 +12,21 @@ const SplashScreen = (): ReactElement => {
   const navigation = useNavigation<RootStackNavigation>();
 
   useEffect(() => {
-    analytics().logEvent('TrainingApp_Splash_by_' + Platform.OS);
+    logSplashScreen();
     setTimeout(() => {
-      if (auth().currentUser) {
+      if (checkAuth()) {
         navigation.dispatch(StackActions.replace('ProfileScreen'));
       } else {
         navigation.dispatch(StackActions.replace('LoginScreen'));
       }
     }, 1000);
   }, [navigation]);
+  const logSplashScreen = async () => {
+    await analytics().logEvent('TrainingApp_Splash_by_');
+  };
+  const checkAuth = () => {
+    return auth().currentUser;
+  };
 
   return <Profile heading={'Welcome to IW Training App'} />;
 };
