@@ -26,22 +26,29 @@ const Login = ({
     <SafeAreaView style={styles.container}>
       <View style={styles.loginContainer}>
         <TextInput
+          testID="email"
           style={styles.textInput}
           placeholder="Enter Email"
           onChangeText={setEmail}
         />
 
         <TextInput
+          testID="password"
           style={styles.textInput}
           placeholder="Enter Password"
           onChangeText={setPassword}
           secureTextEntry
         />
-        <TouchableOpacity onPress={() => onAction?.({email, password})}>
+        <TouchableOpacity
+          testID={mainBtnTitle}
+          onPress={() => onAction?.({email, password})}>
           <Text style={styles.btnText}>{mainBtnTitle}</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.regTextContainer} onPress={onNavigation}>
+      <TouchableOpacity
+        testID={navBtnTitle}
+        style={styles.regTextContainer}
+        onPress={onNavigation}>
         <Text style={styles.regText}>{navBtnTitle}</Text>
       </TouchableOpacity>
     </SafeAreaView>

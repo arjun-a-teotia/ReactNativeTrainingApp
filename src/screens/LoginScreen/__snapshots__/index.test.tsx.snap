@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login component renders correctly 1`] = `
+exports[`Login Screen Testing renders correctly 1`] = `
 <RNCSafeAreaView
   edges={
     Array [

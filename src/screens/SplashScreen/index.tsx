@@ -14,7 +14,8 @@ const SplashScreen = (): ReactElement => {
   useEffect(() => {
     logSplashScreen();
     setTimeout(() => {
-      if (checkAuth()) {
+      /* istanbul ignore next */
+      if (auth().currentUser) {
         navigation.dispatch(StackActions.replace('ProfileScreen'));
       } else {
         navigation.dispatch(StackActions.replace('LoginScreen'));
@@ -23,9 +24,6 @@ const SplashScreen = (): ReactElement => {
   }, [navigation]);
   const logSplashScreen = async () => {
     await analytics().logEvent('TrainingApp_Splash_by_');
-  };
-  const checkAuth = () => {
-    return auth().currentUser;
   };
 
   return <Profile heading={'Welcome to IW Training App'} />;

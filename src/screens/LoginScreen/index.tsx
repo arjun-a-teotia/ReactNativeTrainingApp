@@ -22,16 +22,11 @@ const LoginScreen = (): ReactElement => {
       .signInWithEmailAndPassword(user.email?.toLowerCase(), user.password)
       .then(() => {
         analytics().logEvent('TrainingApp_Profile_login_by_' + Platform.OS);
-
         navigation.dispatch(StackActions.replace('ProfileScreen'));
       })
-      .catch(error => {
-        if (error.code === 'auth/invalid-email') {
-          Alert.alert('That email address is invalid!');
-        } else {
-          Alert.alert('Invalid credentials!');
-        }
-        console.log(error);
+      .catch(() => {
+        /* istanbul ignore next */
+        Alert.alert('Invalid credentials!');
       });
   };
 
