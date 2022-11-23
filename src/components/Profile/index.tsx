@@ -2,7 +2,6 @@ import React from 'react';
 
 import {ActivityIndicator, Text, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import QRCode from 'react-native-qrcode-svg';
 
 import styles from './index.styles';
 
@@ -10,16 +9,21 @@ type ProfileProps = {
   readonly onLogout?: () => void;
   readonly heading?: string;
   readonly navBtnTitle?: string;
+  readonly isProfileScreen?: boolean;
 };
 
-const Profile: React.FC<ProfileProps> = ({onLogout = undefined, heading}) => {
+const Profile: React.FC<ProfileProps> = ({
+  onLogout = undefined,
+  heading,
+  isProfileScreen = false,
+}) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text>{heading}</Text>
-      {onLogout ? (
+      {isProfileScreen ? (
         <>
-          <QRCode value="Thanks for logging in!" />
           <TouchableOpacity
+            testID="logout"
             style={styles.logoutBtnContainer}
             onPress={onLogout}>
             <Text style={styles.logoutText}>Logout</Text>

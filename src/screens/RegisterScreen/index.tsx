@@ -29,6 +29,7 @@ const RegisterScreen = (): ReactElement => {
         );
       })
       .catch(error => {
+        /* istanbul ignore next */
         if (error.code === 'auth/email-already-in-use') {
           Alert.alert('That email address is already in use!');
         } else if (error.code === 'auth/invalid-email') {
@@ -38,7 +39,6 @@ const RegisterScreen = (): ReactElement => {
         } else {
           Alert.alert('Could not register, please try again!');
         }
-        console.log(error);
       });
   };
 

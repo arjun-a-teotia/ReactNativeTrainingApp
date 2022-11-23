@@ -8,7 +8,6 @@ import {Login} from './index';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-import {fireEvent, render, waitFor} from '@testing-library/react-native';
 const mockNavigate = jest.fn();
 
 jest.mock('@react-navigation/native', () => {
@@ -29,8 +28,8 @@ describe('Login component', () => {
         <Login
           mainBtnTitle="Login"
           navBtnTitle="Register"
-          onAction={() => null}
-          onNavigation={() => null}
+          onAction={() => undefined}
+          onNavigation={() => undefined}
         />,
       )
       .toJSON();

@@ -15,7 +15,7 @@ type LoginProps = {
 };
 
 const Login = ({
-  onAction = undefined,
+  onAction,
   onNavigation,
   mainBtnTitle,
   navBtnTitle,

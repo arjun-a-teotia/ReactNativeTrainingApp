@@ -16,13 +16,17 @@ const ProfileScreen = (): ReactElement => {
     );
     auth()
       .signOut()
-      .then(() => navigation.dispatch(StackActions.replace('LoginScreen')));
+      .then(() => {
+        /* istanbul ignore next */
+        navigation.dispatch(StackActions.replace('LoginScreen'));
+      });
   };
 
   return (
     <Profile
       heading={'Welcome' + auth().currentUser?.email}
       onLogout={onLogout}
+      isProfileScreen={true}
     />
   );
 };
