@@ -1,12 +1,12 @@
 name: Development Distribution
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
 jobs:
-  dev-distribution:
+  test:
     runs-on: ubuntu-latest
     name: Development Distribution
     steps:
