@@ -1,56 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Profile Screen Testing renders correctly 1`] = `
-<RNCSafeAreaView
-  edges={
-    Array [
-      "bottom",
-      "left",
-      "right",
-      "top",
-    ]
-  }
-  style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
-    }
-  }
->
-  <Text>
-    Welcomeundefined
-  </Text>
+<RCTSafeAreaView>
   <View
-    accessible={true}
-    collapsable={false}
-    focusable={true}
-    onClick={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "alignItems": "flex-end",
-        "opacity": 1,
+        "borderBottomWidth": 1,
+        "flexDirection": "row",
+        "paddingHorizontal": 20,
+        "paddingVertical": 20,
       }
     }
-    testID="logout"
   >
-    <Text
+    <Text>
+      Welcome undefined
+    </Text>
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "color": "steelblue",
-          "fontSize": 18,
-          "marginTop": 150,
+          "opacity": 1,
+          "width": "50%",
         }
       }
+      testID="logout"
     >
-      Logout
-    </Text>
+      <Text
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "steelblue",
+            "fontSize": 18,
+          }
+        }
+      >
+        Logout
+      </Text>
+    </View>
   </View>
-</RNCSafeAreaView>
+  <Text>
+    No pokemon found.
+  </Text>
+</RCTSafeAreaView>
 `;

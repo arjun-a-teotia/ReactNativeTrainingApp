@@ -1,5 +1,5 @@
 import React, {ReactElement, useEffect, useState} from 'react';
-import {ActivityIndicator, Platform, Text} from 'react-native';
+import {ActivityIndicator, Platform, SafeAreaView, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {RootStackNavigation} from '../../navigation';
 import auth from '@react-native-firebase/auth';
@@ -62,14 +62,14 @@ const ProfileScreen = (): ReactElement => {
   };
 
   return (
-    <>
+    <SafeAreaView>
       <Profile
         heading={'Welcome ' + auth().currentUser?.email}
         onLogout={onLogout}
         isProfileScreen={true}
       />
       {renderPokemonList()}
-    </>
+    </SafeAreaView>
   );
 };
 

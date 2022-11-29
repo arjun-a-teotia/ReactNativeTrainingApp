@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     paddingHorizontal: 20,
+    paddingVertical: 20,
   },
   logoutBtnContainer: {
     width: '50%',
