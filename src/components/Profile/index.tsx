@@ -18,7 +18,7 @@ const Profile: React.FC<ProfileProps> = ({
   isProfileScreen = false,
 }) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={isProfileScreen ? styles.container: styles.fullContainer}>
       <Text>{heading}</Text>
       {isProfileScreen ? (
         <>

@@ -1,17 +1,23 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
+  fullContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+    flex: 1,
+  },
+  container: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    paddingHorizontal: 20,
   },
   logoutBtnContainer: {
-    alignItems: 'flex-end',
+    width: '50%',
   },
   logoutText: {
     fontSize: 18,
-    marginTop: 150,
     color: 'steelblue',
+    alignSelf: 'center',
   },
 });
 

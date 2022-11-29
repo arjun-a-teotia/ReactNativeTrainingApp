@@ -11,21 +11,24 @@ import {getPokemon} from '../../api';
 
 const ProfileScreen = (): ReactElement => {
   const [offset, setOffset] = useState<number>(0);
-  const [pokemons, setPokemons] = useState<readonly Pokemon[]>();
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [errorMessage, setErrorMessage] = useState<string>();
   const navigation = useNavigation<RootStackNavigation>();
 
   useEffect(() => {
-    const hitGetPokemonApi = async () => {
-      try {
-        setPokemons(await getPokemon(offset));
-      } catch (error) {
-        setErrorMessage((error as Error).message);
-      }
-    };
-
     hitGetPokemonApi();
   }, []);
+  const hitGetPokemonApi = async () => {
+    try {
+      const newPokemons = await getPokemon(offset);
+      if (newPokemons) {
+        setPokemons(pokemons.concat(newPokemons));
+      }
+      setOffset(offset + 20);
+    } catch (error) {
+      setErrorMessage((error as Error).message);
+    }
+  };
 
   const onLogout = async () => {
     await analytics().logEvent(
@@ -50,7 +53,11 @@ const ProfileScreen = (): ReactElement => {
       return <ActivityIndicator testID="activity-indicator" />;
     }
     return (
-      <PokemonList pokemons={pokemons} onSelectPokemon={onSelectPokemon} />
+      <PokemonList
+        pokemons={pokemons}
+        onSelectPokemon={onSelectPokemon}
+        onEndReached={hitGetPokemonApi}
+      />
     );
   };
 
