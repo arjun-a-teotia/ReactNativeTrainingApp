@@ -5,9 +5,9 @@ const toModel = (response: PokemonResource): Array<Pokemon> => {
 };
 
 const getPokemon = async (
-  offset: number,
+  offset: number = 20,
   limit: number = 20,
-): Promise<readonly Pokemon[]> => {
+): Promise<Pokemon[]> => {
   const baseUrl = 'https://pokeapi.co/api/v2';
   const url = `${baseUrl}/pokemon?offset=${offset}&limit=${limit}`;
 

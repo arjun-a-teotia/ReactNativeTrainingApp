@@ -5,7 +5,7 @@ type User = {
   readonly password: string;
 };
 type Pokemon = {
-  readonly name?: string;
+  readonly name: string;
   readonly url: string;
 };
 type PokemonResource = {

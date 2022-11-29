@@ -31,7 +31,7 @@ const PokemonList = ({
     return (
       <TouchableWithoutFeedback onPress={() => onSelectPokemon?.(pokemon)}>
         <View style={styles.item}>
-          <Text style={styles.itemText} key={pokemon.url}>
+          <Text style={styles.itemText} key={pokemon.url} testID={pokemon.name}>
             {index + 1}. {pokemon.name}
           </Text>
         </View>

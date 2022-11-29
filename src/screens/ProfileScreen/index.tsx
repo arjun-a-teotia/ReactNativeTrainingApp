@@ -12,6 +12,7 @@ import {getPokemon} from '../../api';
 const ProfileScreen = (): ReactElement => {
   const [offset, setOffset] = useState<number>(0);
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [showLoader, setshowLoader] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>();
   const navigation = useNavigation<RootStackNavigation>();
 
@@ -20,13 +21,20 @@ const ProfileScreen = (): ReactElement => {
   }, []);
   const hitGetPokemonApi = async () => {
     try {
+      setshowLoader(true);
       const newPokemons = await getPokemon(offset);
-      if (newPokemons) {
+      /* istanbul ignore else */
+      if (pokemons && newPokemons) {
         setPokemons(pokemons.concat(newPokemons));
+      } else if (newPokemons) {
+        setPokemons(newPokemons);
       }
       setOffset(offset + 20);
+      setshowLoader(false);
+      setErrorMessage('');
     } catch (error) {
       setErrorMessage((error as Error).message);
+      setshowLoader(false);
     }
   };
 
@@ -49,7 +57,7 @@ const ProfileScreen = (): ReactElement => {
     if (errorMessage) {
       return <Text>{errorMessage}</Text>;
     }
-    if (!pokemons) {
+    if (showLoader) {
       return <ActivityIndicator testID="activity-indicator" />;
     }
     return (
