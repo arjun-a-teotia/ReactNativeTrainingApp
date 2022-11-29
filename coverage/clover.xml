@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1669727362756" clover="3.2.0">
-  <project timestamp="1669727362756" name="All files">
-    <metrics statements="86" coveredstatements="77" conditionals="21" coveredconditionals="15" methods="30" coveredmethods="25" elements="137" coveredelements="117" complexity="0" loc="86" ncloc="86" packages="8" files="11" classes="11"/>
+<coverage generated="1669728660097" clover="3.2.0">
+  <project timestamp="1669728660097" name="All files">
+    <metrics statements="86" coveredstatements="86" conditionals="21" coveredconditionals="19" methods="30" coveredmethods="27" elements="137" coveredelements="132" complexity="0" loc="86" ncloc="86" packages="8" files="11" classes="11"/>
     <package name="api.getPokemon">
-      <metrics statements="11" coveredstatements="2" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <metrics statements="11" coveredstatements="11" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
       <file name="index.ts" path="/Users/arjun.a.teotia/Training/AwesomeTSProject/src/api/getPokemon/index.ts">
-        <metrics statements="11" coveredstatements="2" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
+        <metrics statements="11" coveredstatements="11" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="17" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
       </file>
     </package>
     <package name="components.Login">
@@ -94,25 +94,25 @@
         <line num="23" count="5" type="stmt"/>
         <line num="24" count="5" type="stmt"/>
         <line num="25" count="5" type="stmt"/>
-        <line num="28" count="4" type="cond" truecount="3" falsecount="0"/>
-        <line num="29" count="4" type="stmt"/>
+        <line num="27" count="4" type="cond" truecount="3" falsecount="0"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="32" count="4" type="stmt"/>
         <line num="33" count="4" type="stmt"/>
         <line num="34" count="4" type="stmt"/>
-        <line num="35" count="4" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
-        <line num="42" count="28" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
-        <line num="54" count="28" type="stmt"/>
-        <line num="55" count="1" type="stmt"/>
-        <line num="57" count="28" type="stmt"/>
-        <line num="58" count="28" type="cond" truecount="2" falsecount="0"/>
-        <line num="59" count="2" type="stmt"/>
-        <line num="61" count="26" type="cond" truecount="2" falsecount="0"/>
-        <line num="62" count="13" type="stmt"/>
-        <line num="64" count="13" type="stmt"/>
-        <line num="73" count="28" type="stmt"/>
+        <line num="41" count="28" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="53" count="28" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="56" count="28" type="stmt"/>
+        <line num="57" count="28" type="cond" truecount="2" falsecount="0"/>
+        <line num="58" count="2" type="stmt"/>
+        <line num="60" count="26" type="cond" truecount="2" falsecount="0"/>
+        <line num="61" count="13" type="stmt"/>
+        <line num="63" count="13" type="stmt"/>
+        <line num="72" count="28" type="stmt"/>
       </file>
     </package>
     <package name="screens.RegisterScreen">

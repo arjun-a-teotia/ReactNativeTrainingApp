@@ -52,7 +52,6 @@ describe('Profile Screen Testing', () => {
   ];
 
   beforeEach(() => {
-    // console.debug("mockGetPokemon", await mockGetPokemon());
     mockGetPokemon.mockResolvedValue(pokemons);
   });
 
