@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>31/31</span>
+                <span class='fraction'>32/32</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>31/31</span>
+                <span class='fraction'>32/32</span>
             </div>
         
             
@@ -147,7 +147,23 @@
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -212,12 +228,6 @@
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">28x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -231,8 +241,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {ReactElement, useEffect, useState} from 'react';
-import {ActivityIndicator, Platform, SafeAreaView, Text} from 'react-native';
+import {
+  ActivityIndicator,
+  Platform,
+  StyleSheet,
+  Text,
+  SafeAreaView,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {RootStackNavigation} from '../../navigation';
 import auth from '@react-native-firebase/auth';
@@ -286,33 +312,37 @@ const ProfileScreen = (): ReactElement =&gt; {
   const onSelectPokemon = (pokemon: Pokemon) =&gt; {
     navigation.navigate('PokemonDetailScreen', {pokemon});
   };
-  const renderPokemonList = () =&gt; {
+  const renderLoaderAndError = () =&gt; {
     if (errorMessage) {
       return &lt;Text&gt;{errorMessage}&lt;/Text&gt;;
     }
     if (showLoader) {
-      return &lt;ActivityIndicator testID="activity-indicator" /&gt;;
+      return &lt;ActivityIndicator size={'large'} testID="activity-indicator" /&gt;;
     }
-    return (
-      &lt;PokemonList
-        pokemons={pokemons}
-        onSelectPokemon={onSelectPokemon}
-        onEndReached={hitGetPokemonApi}
-      /&gt;
-    );
+    return null;
   };
 &nbsp;
   return (
-    &lt;SafeAreaView&gt;
+    &lt;SafeAreaView style={styles.safeArea}&gt;
       &lt;Profile
         heading={'Welcome ' + auth().currentUser?.email}
         onLogout={onLogout}
         isProfileScreen={true}
       /&gt;
-      {renderPokemonList()}
+      &lt;PokemonList
+        pokemons={pokemons}
+        onSelectPokemon={onSelectPokemon}
+        onEndReached={hitGetPokemonApi}
+      /&gt;
+      {renderLoaderAndError()}
     &lt;/SafeAreaView&gt;
   );
 };
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
+});
 &nbsp;
 export {ProfileScreen};
 &nbsp;</pre></td></tr></table></pre>
@@ -322,7 +352,7 @@ export {ProfileScreen};
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-30T09:59:03.159Z
+                at 2022-11-30T16:06:38.718Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

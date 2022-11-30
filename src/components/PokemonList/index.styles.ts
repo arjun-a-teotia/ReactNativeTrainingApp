@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
     padding: 10,
     alignSelf: 'center',
   },
+  list: {
+    flex: 1,
+    marginBottom: 10,
+  },
 });
 
 export default styles;
