@@ -40,14 +40,14 @@ const PokemonList = ({
   };
 
   return (
-    <>
+    <View style={styles.list}>
       <Text style={styles.heading}>Pokemon Name List</Text>
       <FlatList
         data={pokemons}
         renderItem={renderItem}
         onEndReached={onEndReached}
       />
-    </>
+    </View>
   );
 };
 

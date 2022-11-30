@@ -1,5 +1,5 @@
 import React, {ReactElement, useEffect, useState} from 'react';
-import {ActivityIndicator, Platform, SafeAreaView, Text} from 'react-native';
+import {ActivityIndicator, Platform, StyleSheet, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {RootStackNavigation} from '../../navigation';
 import auth from '@react-native-firebase/auth';
@@ -8,6 +8,7 @@ import analytics from '@react-native-firebase/analytics';
 import {Profile, PokemonList} from '../../components';
 import {Pokemon} from '../../models';
 import {getPokemon} from '../../api';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const ProfileScreen = (): ReactElement => {
   const [offset, setOffset] = useState<number>(0);
@@ -53,32 +54,36 @@ const ProfileScreen = (): ReactElement => {
   const onSelectPokemon = (pokemon: Pokemon) => {
     navigation.navigate('PokemonDetailScreen', {pokemon});
   };
-  const renderPokemonList = () => {
+  const renderLoaderAndError = () => {
     if (errorMessage) {
       return <Text>{errorMessage}</Text>;
     }
     if (showLoader) {
-      return <ActivityIndicator testID="activity-indicator" />;
+      return <ActivityIndicator size={"large"} testID="activity-indicator" />;
     }
-    return (
-      <PokemonList
-        pokemons={pokemons}
-        onSelectPokemon={onSelectPokemon}
-        onEndReached={hitGetPokemonApi}
-      />
-    );
+    return null;
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.safeArea}>
       <Profile
         heading={'Welcome ' + auth().currentUser?.email}
         onLogout={onLogout}
         isProfileScreen={true}
       />
-      {renderPokemonList()}
+      <PokemonList
+        pokemons={pokemons}
+        onSelectPokemon={onSelectPokemon}
+        onEndReached={hitGetPokemonApi}
+      />
+      {renderLoaderAndError()}
     </SafeAreaView>
   );
 };
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  }
+});
 
 export {ProfileScreen};
