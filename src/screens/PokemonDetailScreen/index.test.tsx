@@ -112,17 +112,17 @@ describe('Profile Screen Testing', () => {
       expect(queryByTestId('activity-indicator')).toBeFalsy(),
     );
   });
-  // it('renders error message when fails to get pokemon details', async () => {
-  //   const errorMessage = 'Failed to get pokemon details';
+  it('renders error message when fails to get pokemon details', async () => {
+    const errorMessage = 'Failed to get pokemon details';
 
-  //   mockGetPokemon.mockRejectedValue(new Error(errorMessage));
+    mockGetPokemon.mockRejectedValue(new Error(errorMessage));
 
-  //   const {getByText} = render(<PokemonDetailScreen />);
+    const {getByText} = render(<PokemonDetailScreen />);
 
-  //   await waitFor(() => {
-  //     expect(getByText(errorMessage)).toBeTruthy();
-  //   });
-  // });
+    await waitFor(() => {
+      expect(getByText(errorMessage)).toBeTruthy();
+    });
+  });
   it('renders pokemons data', async () => {
     const {getByText} = render(<PokemonDetailScreen />);
 

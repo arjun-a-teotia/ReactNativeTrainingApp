@@ -15,7 +15,7 @@ import {Ability, Pokedex, Stat} from '../../models';
 import styles from './index.styles';
 
 type PokemonListProps = {
-  readonly pokemonDetails: undefined | Pokedex;
+  readonly pokemonDetails: Pokedex;
 };
 
 const PokemonDetail = ({pokemonDetails}: PokemonListProps): ReactElement => {
@@ -32,8 +32,6 @@ const PokemonDetail = ({pokemonDetails}: PokemonListProps): ReactElement => {
     });
     if (allAbilities.length > 1) {
       return allAbilities.slice(0, allAbilities.length - 2);
-    } else {
-      return '';
     }
   };
   const renderItem: ListRenderItem<Stat> = ({item: stats}) => {
@@ -47,9 +45,6 @@ const PokemonDetail = ({pokemonDetails}: PokemonListProps): ReactElement => {
     );
   };
   const renderDetails = () => {
-    if (!pokemonDetails) {
-      return null;
-    }
     if (showQRCode) {
       return (
         <Image
@@ -106,7 +101,10 @@ const PokemonDetail = ({pokemonDetails}: PokemonListProps): ReactElement => {
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>About</Text>
 
-        <TouchableOpacity style={styles.qrTextContainer} onPress={toggleQrCode}>
+        <TouchableOpacity
+          style={styles.qrTextContainer}
+          testID="toggleQrCode"
+          onPress={toggleQrCode}>
           <Text style={styles.regText}>Show QR Code</Text>
         </TouchableOpacity>
         {renderDetails()}

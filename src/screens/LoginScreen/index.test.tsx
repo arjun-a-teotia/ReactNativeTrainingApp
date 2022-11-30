@@ -53,11 +53,6 @@ describe('Login Screen Testing', () => {
   });
   it('Login button click', async () => {
     const {getByTestId} = render(<LoginScreen />);
-    // const mock = jest.fn();
-    // fireEvent.changeText(getByTestId('email'), 'test');
-    // expect(mock).toHaveBeenCalledWith('test');
-    // fireEvent.changeText(getByTestId('password'), 'test');
-    // expect(mock).toHaveBeenCalledWith('test');
     fireEvent.press(getByTestId('Login'));
     await waitFor(async () => {
       expect(analytics().logEvent).toBeCalledTimes(1);
