@@ -1,10 +1,13 @@
 import {RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {User} from '../models';
+import {Pokemon, User} from '../models';
 
 type UserDetailParams = {
   readonly user: User;
+};
+type PokemonDetailScreenParams = {
+  readonly pokemon: Pokemon;
 };
 
 type RootStackParamList = {
@@ -13,10 +16,17 @@ type RootStackParamList = {
   readonly RegisterScreen: undefined;
   readonly ProfileScreen: undefined;
   readonly UserDetail: UserDetailParams;
+  readonly PokemonDetailScreen: PokemonDetailScreenParams;
 };
 
 type RootStackNavigation = NativeStackNavigationProp<RootStackParamList>;
 
 type UserDetailRoute = RouteProp<RootStackParamList, 'UserDetail'>;
+type PokemonDetailRoute = RouteProp<RootStackParamList, 'PokemonDetailScreen'>;
 
-export type {RootStackParamList, RootStackNavigation, UserDetailRoute};
+export type {
+  RootStackParamList,
+  RootStackNavigation,
+  UserDetailRoute,
+  PokemonDetailRoute,
+};

@@ -10,6 +10,7 @@ import {
   RegisterScreen,
   ProfileScreen,
   SplashScreen,
+  PokemonDetailScreen,
 } from '../../screens';
 import {RootStackParamList} from '../../navigation';
 
@@ -37,7 +38,11 @@ const App = (): ReactElement => (
       <Stack.Screen
         name="ProfileScreen"
         component={ProfileScreen}
-        options={{title: 'My Profile'}}
+        options={{title: 'Pokemon List'}}
+      />
+      <Stack.Screen
+        name="PokemonDetailScreen"
+        component={PokemonDetailScreen}
       />
     </Stack.Navigator>
   </NavigationContainer>

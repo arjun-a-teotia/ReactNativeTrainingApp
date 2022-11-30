@@ -1,7 +1,6 @@
 import React from 'react';
 
-import {ActivityIndicator, Text, TouchableOpacity} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native';
 
 import styles from './index.styles';
 
@@ -18,7 +17,7 @@ const Profile: React.FC<ProfileProps> = ({
   isProfileScreen = false,
 }) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={isProfileScreen ? styles.container : styles.fullContainer}>
       <Text>{heading}</Text>
       {isProfileScreen ? (
         <>
@@ -32,7 +31,7 @@ const Profile: React.FC<ProfileProps> = ({
       ) : (
         <ActivityIndicator size={'large'} />
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 
