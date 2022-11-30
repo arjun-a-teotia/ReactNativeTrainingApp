@@ -40,6 +40,23 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
   },
+  qrCode: {
+    width: 200,
+    height: 200,
+    alignSelf: "center",
+    marginTop: 20
+  },
+  qrTextContainer: {
+    alignItems: 'flex-end',
+    textAlign: 'right',
+    position: "absolute",
+    right: 10,
+    top: 10
+  },
+  regText: {
+    fontSize: 16,
+    color: 'steelblue',
+  },
 });
 
 export default styles;

@@ -4,10 +4,16 @@ import {getPokemonDetails} from '../../api';
 import {PokemonDetailRoute, RootStackNavigation} from '../../navigation';
 import {Pokedex} from '../../models';
 import {PokemonDetail} from '../../components/PokemonDetail';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 
 const PokemonDetailScreen = (): ReactElement => {
   const [showLoader, setshowLoader] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>();
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [pokemonDetails, setPokemonDetails] = useState<Pokedex>();
   const route = useRoute<PokemonDetailRoute>();
   const navigation = useNavigation<RootStackNavigation>();
@@ -33,7 +39,22 @@ const PokemonDetailScreen = (): ReactElement => {
     }
   };
 
-  return <PokemonDetail pokemonDetails={pokemonDetails} />;
+  const renderLoaderAndError = () => {
+    if (errorMessage) {
+      return <Text>{errorMessage}</Text>;
+    }
+    if (showLoader) {
+      return <ActivityIndicator size={'large'} testID="activity-indicator" />;
+    }
+    return null;
+  };
+
+  return (
+    <>
+      <PokemonDetail pokemonDetails={pokemonDetails} />
+      {renderLoaderAndError()}
+    </>
+  );
 };
 
 export {PokemonDetailScreen};

@@ -1,9 +1,17 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, useState} from 'react';
 
-import {Image, ScrollView, Text, View, SafeAreaView} from 'react-native';
-import QRCode from 'react-native-qrcode-svg';
+import {
+  Image,
+  ScrollView,
+  Text,
+  View,
+  SafeAreaView,
+  FlatList,
+  ListRenderItem,
+  TouchableOpacity,
+} from 'react-native';
 
-import {Ability, Pokedex} from '../../models';
+import {Ability, Pokedex, Stat} from '../../models';
 
 import styles from './index.styles';
 
@@ -12,6 +20,12 @@ type PokemonListProps = {
 };
 
 const PokemonDetail = ({pokemonDetails}: PokemonListProps): ReactElement => {
+  const [showQRCode, setShowQRCode] = useState<boolean>(false);
+
+  const toggleQrCode = () => {
+    setShowQRCode(!showQRCode);
+  };
+
   const getAbilities = (abilities: Ability[]) => {
     let allAbilities = '';
     abilities.forEach((abilityData: Ability) => {
@@ -23,77 +37,83 @@ const PokemonDetail = ({pokemonDetails}: PokemonListProps): ReactElement => {
       return '';
     }
   };
+  const renderItem: ListRenderItem<Stat> = ({item: stats}) => {
+    return (
+      <View style={styles.ratingItem}>
+        <Text style={[styles.ratingText, styles.lightText]}>
+          {stats.stat.name}
+        </Text>
+        <Text style={[styles.ratingText]}>{stats.base_stat}</Text>
+      </View>
+    );
+  };
+  const renderDetails = () => {
+    if (!pokemonDetails) {
+      return null;
+    }
+    if(showQRCode) {
+      return (
+        <Image
+          style={styles.qrCode}
+          source={{
+            uri: 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example',
+          }}
+        />
+      );
+    }
+    return (
+      <>
+        <View style={styles.ratingItem}>
+          <Text style={[styles.ratingText, styles.lightText]}>Species</Text>
+          <Text style={[styles.ratingText]}>{pokemonDetails.species.name}</Text>
+        </View>
+        <View style={styles.ratingItem}>
+          <Text style={[styles.ratingText, styles.lightText]}>Weight</Text>
+          <Text style={[styles.ratingText]}>
+            {pokemonDetails.weight / 10} (Kg)
+          </Text>
+        </View>
+        <View style={styles.ratingItem}>
+          <Text style={[styles.ratingText, styles.lightText]}>Height</Text>
+          <Text style={[styles.ratingText]}>
+            {pokemonDetails.height / 10} (M)
+          </Text>
+        </View>
+        <View style={styles.ratingItem}>
+          <Text style={[styles.ratingText, styles.lightText]}>Abilities</Text>
+          <Text style={[styles.ratingText]}>
+            {getAbilities(pokemonDetails.abilities)}
+          </Text>
+        </View>
+        <Text style={styles.title}>Base Stats</Text>
+        <FlatList data={pokemonDetails.stats} renderItem={renderItem} />
+      </>
+    );
+  };
   if (!pokemonDetails) {
     return <Text>No pokemon details found.</Text>;
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <View style={styles.imgContainer}>
-          <Image
-            style={styles.image}
-            source={{
-              uri: pokemonDetails.sprites.other['official-artwork'][
-                'front_default'
-              ],
-            }}
-          />
-        </View>
-        <View style={styles.detailsContainer}>
-          <Text style={styles.title}>About</Text>
-          <View style={styles.ratingItem}>
-            <Text style={[styles.ratingText, styles.lightText]}>Species</Text>
-            <Text style={[styles.ratingText]}>
-              {pokemonDetails.species.name}
-            </Text>
-          </View>
-          <View style={styles.ratingItem}>
-            <Text style={[styles.ratingText, styles.lightText]}>Weight</Text>
-            <Text style={[styles.ratingText]}>
-              {pokemonDetails.weight / 10} (Kg)
-            </Text>
-          </View>
-          <View style={styles.ratingItem}>
-            <Text style={[styles.ratingText, styles.lightText]}>Height</Text>
-            <Text style={[styles.ratingText]}>
-              {pokemonDetails.height / 10} (m)
-            </Text>
-          </View>
-          <View style={styles.ratingItem}>
-            <Text style={[styles.ratingText, styles.lightText]}>Abilities</Text>
-            <Text style={[styles.ratingText]}>
-              {getAbilities(pokemonDetails.abilities)}
-            </Text>
-          </View>
-          <Text style={styles.title}>Base Stats</Text>
-          <View style={styles.ratingItem}>
-            <Text style={[styles.ratingText, styles.lightText]}>Species</Text>
-            <Text style={[styles.ratingText]}>
-              {pokemonDetails.species.name}
-            </Text>
-          </View>
-          <View style={styles.ratingItem}>
-            <Text style={[styles.ratingText, styles.lightText]}>Weight</Text>
-            <Text style={[styles.ratingText]}>
-              {pokemonDetails.weight / 10} (Kg)
-            </Text>
-          </View>
-          <View style={styles.ratingItem}>
-            <Text style={[styles.ratingText, styles.lightText]}>Height</Text>
-            <Text style={[styles.ratingText]}>
-              {pokemonDetails.height / 10} (m)
-            </Text>
-          </View>
-          <View style={styles.ratingItem}>
-            <Text style={[styles.ratingText, styles.lightText]}>Abilities</Text>
-            <Text style={[styles.ratingText]}>
-              {getAbilities(pokemonDetails.abilities)}
-            </Text>
-          </View>
-          <QRCode value="arjun" />
-        </View>
-      </ScrollView>
+      <View style={styles.imgContainer}>
+        <Image
+          style={styles.image}
+          source={{
+            uri: pokemonDetails.sprites.other['official-artwork'][
+              'front_default'
+            ],
+          }}
+        />
+      </View>
+      <View style={styles.detailsContainer}>
+        <Text style={styles.title}>About</Text>
+
+      <TouchableOpacity style={styles.qrTextContainer} onPress={toggleQrCode}>
+        <Text style={styles.regText}>Show QR Code</Text>
+      </TouchableOpacity>
+        {renderDetails()}
+      </View>
     </SafeAreaView>
   );
 };
