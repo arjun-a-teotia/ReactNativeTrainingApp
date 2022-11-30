@@ -43,15 +43,15 @@ const styles = StyleSheet.create({
   qrCode: {
     width: 200,
     height: 200,
-    alignSelf: "center",
-    marginTop: 20
+    alignSelf: 'center',
+    marginTop: 20,
   },
   qrTextContainer: {
     alignItems: 'flex-end',
     textAlign: 'right',
-    position: "absolute",
+    position: 'absolute',
     right: 10,
-    top: 10
+    top: 10,
   },
   regText: {
     fontSize: 16,

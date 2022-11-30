@@ -4,12 +4,7 @@ import {getPokemonDetails} from '../../api';
 import {PokemonDetailRoute, RootStackNavigation} from '../../navigation';
 import {Pokedex} from '../../models';
 import {PokemonDetail} from '../../components/PokemonDetail';
-import {
-  ActivityIndicator,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import {ActivityIndicator, Text} from 'react-native';
 
 const PokemonDetailScreen = (): ReactElement => {
   const [showLoader, setshowLoader] = useState<boolean>(false);

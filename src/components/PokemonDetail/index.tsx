@@ -2,7 +2,6 @@ import React, {ReactElement, useState} from 'react';
 
 import {
   Image,
-  ScrollView,
   Text,
   View,
   SafeAreaView,
@@ -51,7 +50,7 @@ const PokemonDetail = ({pokemonDetails}: PokemonListProps): ReactElement => {
     if (!pokemonDetails) {
       return null;
     }
-    if(showQRCode) {
+    if (showQRCode) {
       return (
         <Image
           style={styles.qrCode}
@@ -100,18 +99,16 @@ const PokemonDetail = ({pokemonDetails}: PokemonListProps): ReactElement => {
         <Image
           style={styles.image}
           source={{
-            uri: pokemonDetails.sprites.other['official-artwork'][
-              'front_default'
-            ],
+            uri: pokemonDetails.sprites.other['official-artwork'].front_default,
           }}
         />
       </View>
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>About</Text>
 
-      <TouchableOpacity style={styles.qrTextContainer} onPress={toggleQrCode}>
-        <Text style={styles.regText}>Show QR Code</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.qrTextContainer} onPress={toggleQrCode}>
+          <Text style={styles.regText}>Show QR Code</Text>
+        </TouchableOpacity>
         {renderDetails()}
       </View>
     </SafeAreaView>

@@ -1,5 +1,11 @@
 import React, {ReactElement, useEffect, useState} from 'react';
-import {ActivityIndicator, Platform, StyleSheet, Text, SafeAreaView} from 'react-native';
+import {
+  ActivityIndicator,
+  Platform,
+  StyleSheet,
+  Text,
+  SafeAreaView,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {RootStackNavigation} from '../../navigation';
 import auth from '@react-native-firebase/auth';
@@ -58,7 +64,7 @@ const ProfileScreen = (): ReactElement => {
       return <Text>{errorMessage}</Text>;
     }
     if (showLoader) {
-      return <ActivityIndicator size={"large"} testID="activity-indicator" />;
+      return <ActivityIndicator size={'large'} testID="activity-indicator" />;
     }
     return null;
   };
@@ -82,7 +88,7 @@ const ProfileScreen = (): ReactElement => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-  }
+  },
 });
 
 export {ProfileScreen};

@@ -13,12 +13,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textTransform: 'capitalize',
     padding: 10,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   list: {
     flex: 1,
-    marginBottom: 10
-  }
+    marginBottom: 10,
+  },
 });
 
 export default styles;

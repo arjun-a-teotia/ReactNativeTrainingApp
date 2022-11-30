@@ -15,14 +15,12 @@ jest.useFakeTimers();
 jest.mock('@react-navigation/native');
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 jest.mock('src/api');
-const mockNavigate = jest.fn();
 const apiURL = 'https://pokeapi.co/api/v2/pokemon/899/';
-const pokemonName = "wyrdeer";
+const pokemonName = 'wyrdeer';
 const pokemonRouteParams: Pokemon = {
   name: pokemonName,
-  url: apiURL
-
-}
+  url: apiURL,
+};
 describe('Profile Screen Testing', () => {
   const mockUseNavigation = useNavigation as jest.Mock;
   const mockUseRoute = useRoute as jest.Mock;
@@ -96,7 +94,7 @@ describe('Profile Screen Testing', () => {
   beforeEach(() => {
     mockUseRoute.mockReturnValue({
       params: {
-        pokemon: pokemonRouteParams
+        pokemon: pokemonRouteParams,
       },
     });
     mockUseNavigation.mockReturnValue({
