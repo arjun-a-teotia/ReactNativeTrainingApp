@@ -12,6 +12,7 @@ const PokemonDetailScreen = (): ReactElement => {
   const [pokemonDetails, setPokemonDetails] = useState<Pokedex>();
   const route = useRoute<PokemonDetailRoute>();
   const navigation = useNavigation<RootStackNavigation>();
+  console.log("route.paramsTesting", route.params);
 
   const {name: pokemonName, url: pokemonDetailsURL} = route.params.pokemon;
 
