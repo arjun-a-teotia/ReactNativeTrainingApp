@@ -11,7 +11,6 @@ const getPokemonDetails = async (
   }
 
   const response = await result.json();
-  console.log('response', response);
 
   return response as Pokedex;
 };
