@@ -1,6 +1,6 @@
 import React, {ReactElement, useLayoutEffect} from 'react';
 
-import {FlatList, ListRenderItem, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
 import {PokemonDetailRoute, RootStackNavigation} from 'src/navigation';
@@ -11,9 +11,7 @@ const PokemonDetailScreen = (): ReactElement => {
   const route = useRoute<PokemonDetailRoute>();
   const navigation = useNavigation<RootStackNavigation>();
 
-  const {name: pokemonName, url} = route.params.pokemon;
-
-  const title = `${pokemonName} - Ratings`;
+  const {name: pokemonName} = route.params.pokemon;
 
   useLayoutEffect(() => {
     navigation.setOptions({title: pokemonName.toUpperCase()});

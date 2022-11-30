@@ -18,7 +18,7 @@ const ProfileScreen = (): ReactElement => {
 
   useEffect(() => {
     hitGetPokemonApi();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const hitGetPokemonApi = async () => {
     try {
       setshowLoader(true);

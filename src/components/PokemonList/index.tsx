@@ -42,7 +42,11 @@ const PokemonList = ({
   return (
     <>
       <Text style={styles.heading}>Pokemon Name List</Text>
-      <FlatList data={pokemons} renderItem={renderItem} onEndReached={onEndReached} />
+      <FlatList
+        data={pokemons}
+        renderItem={renderItem}
+        onEndReached={onEndReached}
+      />
     </>
   );
 };
