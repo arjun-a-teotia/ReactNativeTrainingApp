@@ -2,7 +2,7 @@ import React, {ReactElement} from 'react';
 
 import {StatusBar, Text} from 'react-native';
 
-import {getStateFromPath, LinkingOptions, NavigationContainer, NavigationContainerProps} from '@react-navigation/native';
+import {getStateFromPath, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {
@@ -13,42 +13,53 @@ import {
   PokemonDetailScreen,
 } from '../../screens';
 import {RootStackParamList} from '../../navigation';
+import {PokemonLink} from '../../models';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const config = {
   screens: {
-    PokemonDetailScreen: {
-      initialRouteName: 'SplashScreen',
+    ProfileScreen: {
       path: 'pokemonDetails/:name/:id',
       parse: {
         name: (name: string) => name.replace(/^@/, ''),
       }
-    }
-  }
+    },
+  },
 };
 const linking = {
   prefixes: ['mypokapp://'],
   config,
   getStateFromPath: (path: string, options: any) => {
     const state = getStateFromPath(path, options);
+    if (!state) {
+      return state;
+    }
     const newState = {
       ...state,
       routes: state.routes.map(route => {
-        if (route.name === 'PokemonDetailScreen') {
-          // modify your params however you like here!
-          return {
-            ...route,
-            params: { pokemon: {
-              name: route.params?.name,
-              url: "https://pokeapi.co/api/v2/pokemon/"+route.params?.id,
-            } }
+        if (route.name === 'ProfileScreen') {
+          try {
+            // modify your params however you like here!
+            const params = route.params as PokemonLink;
+            return {
+              ...route,
+              params: {
+                pokemon: {
+                  name: params.name,
+                  url: 'https://pokeapi.co/api/v2/pokemon/' + params.id,
+                },
+              },
+            };
+          } catch (error) {
+            console.log(error);
+            return route;
           }
         } else {
-          return route
+          return route;
         }
       }),
     };
-    console.log("arjun newState", newState);
+    
     return newState;
   },
 };
