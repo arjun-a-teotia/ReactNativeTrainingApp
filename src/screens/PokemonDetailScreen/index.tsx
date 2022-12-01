@@ -1,10 +1,14 @@
 import React, {ReactElement, useEffect, useLayoutEffect, useState} from 'react';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {StackActions, useNavigation, useRoute} from '@react-navigation/native';
 import {getPokemonDetails} from '../../api';
 import {PokemonDetailRoute, RootStackNavigation} from '../../navigation';
 import {Pokedex} from '../../models';
 import {PokemonDetail} from '../../components/PokemonDetail';
-import {ActivityIndicator, Text} from 'react-native';
+import {
+  ActivityIndicator,
+  Text,
+} from 'react-native';
+import {HeaderBackButton} from '@react-navigation/elements';
 
 const PokemonDetailScreen = (): ReactElement => {
   const [showLoader, setshowLoader] = useState<boolean>(false);
@@ -15,8 +19,25 @@ const PokemonDetailScreen = (): ReactElement => {
 
   const {name: pokemonName, url: pokemonDetailsURL} = route.params.pokemon;
 
+  const leftHeaderDeeplink = () => {
+    return (
+      <HeaderBackButton
+        onPress={() =>
+          navigation.dispatch(StackActions.replace('ProfileScreen'))
+        }
+      />
+    );
+  };
+
   useLayoutEffect(() => {
-    navigation.setOptions({title: pokemonName.toUpperCase()});
+    if (!navigation.canGoBack()) {
+      navigation.setOptions({
+        title: pokemonName.toUpperCase(),
+        headerLeft: leftHeaderDeeplink,
+      });
+    } else {
+      navigation.setOptions({title: pokemonName.toUpperCase()});
+    }
   });
   useEffect(() => {
     hitGetPokemonDetailsApi();
@@ -44,10 +65,9 @@ const PokemonDetailScreen = (): ReactElement => {
     return null;
   };
   const renderPokemonDetails = () => {
-    if (!pokemonDetails) {
-      return <Text>No Pokemon data found.</Text>;
+    if (pokemonDetails) {
+      return <PokemonDetail pokemonDetails={pokemonDetails} />;
     }
-    return <PokemonDetail pokemonDetails={pokemonDetails} />;
   };
   return (
     <>

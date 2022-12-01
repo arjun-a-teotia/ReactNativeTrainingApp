@@ -1,5 +1,5 @@
 import React, {ReactElement} from 'react';
-
+import 'react-native-gesture-handler';
 import {StatusBar, Text} from 'react-native';
 
 import {getStateFromPath, NavigationContainer} from '@react-navigation/native';
@@ -18,7 +18,7 @@ import {PokemonLink} from '../../models';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const config = {
   screens: {
-    ProfileScreen: {
+    PokemonDetailScreen: {
       path: 'pokemonDetails/:name/:id',
       parse: {
         name: (name: string) => name.replace(/^@/, ''),
@@ -37,7 +37,7 @@ const linking = {
     const newState = {
       ...state,
       routes: state.routes.map(route => {
-        if (route.name === 'ProfileScreen') {
+        if (route.name === 'PokemonDetailScreen') {
           try {
             // modify your params however you like here!
             const params = route.params as PokemonLink;
