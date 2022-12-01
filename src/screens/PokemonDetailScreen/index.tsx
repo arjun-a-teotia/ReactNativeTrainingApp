@@ -12,7 +12,6 @@ const PokemonDetailScreen = (): ReactElement => {
   const [pokemonDetails, setPokemonDetails] = useState<Pokedex>();
   const route = useRoute<PokemonDetailRoute>();
   const navigation = useNavigation<RootStackNavigation>();
-  console.log("route.paramsTesting", route.params);
 
   const {name: pokemonName, url: pokemonDetailsURL} = route.params.pokemon;
 
@@ -21,7 +20,7 @@ const PokemonDetailScreen = (): ReactElement => {
   });
   useEffect(() => {
     hitGetPokemonDetailsApi();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [route.params.pokemon]); // eslint-disable-line react-hooks/exhaustive-deps
   const hitGetPokemonDetailsApi = async () => {
     try {
       setshowLoader(true);
@@ -44,10 +43,15 @@ const PokemonDetailScreen = (): ReactElement => {
     }
     return null;
   };
-
+  const renderPokemonDetails = () => {
+    if (!pokemonDetails) {
+      return <Text>No Pokemon data found.</Text>;
+    }
+    return <PokemonDetail pokemonDetails={pokemonDetails} />;
+  };
   return (
     <>
-      <PokemonDetail pokemonDetails={pokemonDetails} />
+      {renderPokemonDetails()}
       {renderLoaderAndError()}
     </>
   );

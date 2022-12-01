@@ -63,3 +63,10 @@ export interface Type {
   slot: number;
   type: Species;
 }
+export type PokemonLink = {
+  readonly name: string;
+  readonly id: string;
+};
+export type PokemonParam = {
+  readonly pokemon: Pokemon;
+};

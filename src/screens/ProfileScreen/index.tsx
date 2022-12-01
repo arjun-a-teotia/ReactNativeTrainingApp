@@ -6,13 +6,13 @@ import {
   Text,
   SafeAreaView,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {RootStackNavigation} from '../../navigation';
 import auth from '@react-native-firebase/auth';
 import {StackActions} from '@react-navigation/native';
 import analytics from '@react-native-firebase/analytics';
 import {Profile, PokemonList} from '../../components';
-import {Pokemon} from '../../models';
+import {Pokemon, PokemonParam} from '../../models';
 import {getPokemon} from '../../api';
 
 const ProfileScreen = (): ReactElement => {
@@ -21,11 +21,18 @@ const ProfileScreen = (): ReactElement => {
   const [showLoader, setshowLoader] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>();
   const navigation = useNavigation<RootStackNavigation>();
+  const route = useRoute();
+  console.log("arjunParam in ProfileScreen", route.params);
 
   useEffect(() => {
     hitGetPokemonApi();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [route.params]); // eslint-disable-line react-hooks/exhaustive-deps
   const hitGetPokemonApi = async () => {
+    const params = route.params as PokemonParam;
+    if(params) {
+      console.log("paramsGood", params);
+      return navigation.navigate('PokemonDetailScreen', params);
+    }
     try {
       setshowLoader(true);
       const newPokemons = await getPokemon(offset);

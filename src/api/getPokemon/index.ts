@@ -1,4 +1,4 @@
-import {Pokemon, PokemonResource} from 'src/models';
+import {Pokemon, PokemonResource} from '../..//models';
 
 const toModel = (response: PokemonResource): Array<Pokemon> => {
   return response.results;
