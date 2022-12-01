@@ -10,13 +10,16 @@ import {render, waitFor} from '@testing-library/react-native';
 import {getPokemonDetails} from '../../api';
 import {Pokedex, Pokemon} from '../../models';
 import {PokemonDetailScreen} from './index';
-
-jest.useFakeTimers();
-jest.mock('@react-navigation/native');
-jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
-jest.mock('src/api');
+import 'react-native-gesture-handler/jestSetup';
 const apiURL = 'https://pokeapi.co/api/v2/pokemon/899/';
 const pokemonName = 'wyrdeer';
+
+jest.useFakeTimers();
+const mockNavigate = jest.fn();
+jest.mock('@react-navigation/native');
+// jest.mock('@react-navigation/elements');
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+jest.mock('src/api');
 const pokemonRouteParams: Pokemon = {
   name: pokemonName,
   url: apiURL,
@@ -26,6 +29,7 @@ describe('Profile Screen Testing', () => {
   const mockUseRoute = useRoute as jest.Mock;
 
   const mockSetOptions = jest.fn();
+  const mockCanGoBack = jest.fn();
   const mockGetPokemon = getPokemonDetails as jest.Mock;
 
   const pokemons: Pokedex = {
@@ -99,6 +103,7 @@ describe('Profile Screen Testing', () => {
     });
     mockUseNavigation.mockReturnValue({
       setOptions: mockSetOptions,
+      canGoBack: mockCanGoBack
     });
 
     mockGetPokemon.mockResolvedValue(pokemons);

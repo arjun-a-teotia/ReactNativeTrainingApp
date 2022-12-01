@@ -35,7 +35,6 @@ jest.mock('@react-native-firebase/auth', () => {
 jest.mock('@react-native-firebase/analytics', () => {
   return jest.fn().mockReturnValue({logEvent: jest.fn()});
 });
-jest.mock('react-native-qrcode-svg', () => ({}));
 jest.useFakeTimers();
 describe('Splash Screen Testing', () => {
   it('renders correctly', () => {

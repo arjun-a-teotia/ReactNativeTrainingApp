@@ -22,7 +22,7 @@ const config = {
       path: 'pokemonDetails/:name/:id',
       parse: {
         name: (name: string) => name.replace(/^@/, ''),
-      }
+      },
     },
   },
 };
@@ -59,7 +59,7 @@ const linking = {
         }
       }),
     };
-    
+
     return newState;
   },
 };

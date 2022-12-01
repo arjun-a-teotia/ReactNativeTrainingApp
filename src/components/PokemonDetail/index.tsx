@@ -51,7 +51,9 @@ const PokemonDetail = ({pokemonDetails}: PokemonListProps): ReactElement => {
         <Image
           style={styles.qrCode}
           source={{
-            uri: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+pokemonLink,
+            uri:
+              'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' +
+              pokemonLink,
           }}
         />
       );

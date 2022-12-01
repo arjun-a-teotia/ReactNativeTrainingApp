@@ -4,10 +4,7 @@ import {getPokemonDetails} from '../../api';
 import {PokemonDetailRoute, RootStackNavigation} from '../../navigation';
 import {Pokedex} from '../../models';
 import {PokemonDetail} from '../../components/PokemonDetail';
-import {
-  ActivityIndicator,
-  Text,
-} from 'react-native';
+import {ActivityIndicator, Text} from 'react-native';
 import {HeaderBackButton} from '@react-navigation/elements';
 
 const PokemonDetailScreen = (): ReactElement => {
