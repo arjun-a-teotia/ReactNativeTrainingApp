@@ -13,9 +13,9 @@ const PokemonDetailScreen = (): ReactElement => {
   const [pokemonDetails, setPokemonDetails] = useState<Pokedex>();
   const route = useRoute<PokemonDetailRoute>();
   const navigation = useNavigation<RootStackNavigation>();
-
   const {name: pokemonName, url: pokemonDetailsURL} = route.params.pokemon;
 
+  /* istanbul ignore next */
   const leftHeaderDeeplink = () => {
     return (
       <HeaderBackButton

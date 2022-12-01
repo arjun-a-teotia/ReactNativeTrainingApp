@@ -15,9 +15,7 @@ const apiURL = 'https://pokeapi.co/api/v2/pokemon/899/';
 const pokemonName = 'wyrdeer';
 
 jest.useFakeTimers();
-const mockNavigate = jest.fn();
 jest.mock('@react-navigation/native');
-// jest.mock('@react-navigation/elements');
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 jest.mock('src/api');
 const pokemonRouteParams: Pokemon = {
@@ -103,7 +101,7 @@ describe('Profile Screen Testing', () => {
     });
     mockUseNavigation.mockReturnValue({
       setOptions: mockSetOptions,
-      canGoBack: mockCanGoBack
+      canGoBack: mockCanGoBack,
     });
 
     mockGetPokemon.mockResolvedValue(pokemons);
