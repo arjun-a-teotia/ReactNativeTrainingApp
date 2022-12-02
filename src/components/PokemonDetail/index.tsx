@@ -20,6 +20,7 @@ type PokemonListProps = {
 
 const PokemonDetail = ({pokemonDetails}: PokemonListProps): ReactElement => {
   const [showQRCode, setShowQRCode] = useState<boolean>(false);
+  const pokemonLink = `mypokapp://pokemonDetails/@${pokemonDetails.name}/${pokemonDetails.id}`;
 
   const toggleQrCode = () => {
     setShowQRCode(!showQRCode);
@@ -50,7 +51,9 @@ const PokemonDetail = ({pokemonDetails}: PokemonListProps): ReactElement => {
         <Image
           style={styles.qrCode}
           source={{
-            uri: 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example',
+            uri:
+              'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' +
+              pokemonLink,
           }}
         />
       );

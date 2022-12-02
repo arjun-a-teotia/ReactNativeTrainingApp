@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 
-import {Pokemon} from 'src/models';
+import {Pokemon} from '../..//models';
 
 import styles from './index.styles';
 
