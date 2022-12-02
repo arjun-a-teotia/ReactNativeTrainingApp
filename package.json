@@ -62,7 +62,7 @@
       "./jest.setup.js"
     ],
     "moduleNameMapper": {
-      "\\.(png)$": "<rootDir>/fileMock.js"
+      "\\.(png)$": "<rootDir>/jest.setup.js"
     }
   }
 }
