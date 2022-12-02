@@ -48,4 +48,5 @@ const App = (): ReactElement => (
   </NavigationContainer>
 );
 
-export default App;
+// export default App;
+export {default} from '../../../storybook'; 
